@@ -9,7 +9,7 @@ export default function Header() {
     return (
       <header>
         <img src={logo} alt={'Result'} />
-        {/* <h3> Проект реакт</h3> */}
+       
       
         <span>Время сейчас: { now.toLocaleTimeString() }</span>
       </header>
