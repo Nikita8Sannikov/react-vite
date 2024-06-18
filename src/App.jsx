@@ -1,4 +1,4 @@
-import Header from "./components/Header"
+import Header from "./components/Header/Header"
 import TeachingSection from "./components/TeachingSection"
 import ButtonSection from "./components/ButtonSection"
 import IntroSection from "./components/IntroSection"
