@@ -1,6 +1,39 @@
 import Button from './Button/Button'
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
+//TWO WAY BINDING - шаблон связанный непосредственно с фнкционалом
+function StateVsRef() {
+    const input = useRef()
+    // const[value, setValue] = useState('')
+    const[show, setShow] = useState(false)
+    
+    function handleKeyDown(event) {
+        if(event.key==='Enter') {
+            setShow(true)
+        }
+    }
+
+    console.log(input);
+    
+//добавили чтбы отображалочсь по Энтеру но далее стейт продолжает меняться, можно добавлять ещё какие нибудь стейты НОООО 
+//это будет не совсем корректно, есть другой хук useRef
+    return(
+        <div>
+            <h3>Input Value:
+                 {/* {show && value} */}
+                 {show && input.current.value}
+                 </h3>
+            <input
+            ref={input}
+            type="text"
+             className='control'
+            //  value={value} 
+            onKeyDown={handleKeyDown}
+            // onChange={(event)=>setValue(event.target.value)}
+            />
+        </div>
+    )
+}
 
 export default function FeedbackSection() {
     const [form, setForm] = useState({
@@ -41,7 +74,7 @@ export default function FeedbackSection() {
 
            {/* <Button onClick={toggleError}>ToggleError</Button> */}
 
-           <form >
+           <form style={{ marginBottom: '1rem' }}>
             <label htmlFor="name">Ваше имя</label>
             <input type="text" id="name" className="control" value={form.name} 
             style={{
@@ -74,7 +107,12 @@ export default function FeedbackSection() {
             </pre>
 
             <Button disabled={form.hasError} isActive={!form.hasError}>Отправить</Button>
+         
            </form>
+             
+           <hr />
+
+           <StateVsRef />
         </section>
     )
 }
